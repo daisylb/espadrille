@@ -1,0 +1,9 @@
+[package]
+name = "pyscript"
+version = "0.1.0"
+authors = ["Adam Brenecki"]
+
+[dependencies]
+clap = "*"
+rust-crypto = "*"
+dirs = "1.0.4"
