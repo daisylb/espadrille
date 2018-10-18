@@ -6,6 +6,8 @@ Shell scripts are a pain to write, unless you've spent years mastering their arc
 
 pyscript lets you write a single-file script that depends on external libraries, and takes care of installing them and keeping them isolated from the rest of your system for you.
 
+⚠️ pyscript is a very rough-around-the-edges proof of concept at the moment. It may eat your homework.
+
 ## Installation
 
 You'll need Rust installed to compile pyscript.
