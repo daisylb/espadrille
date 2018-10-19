@@ -39,11 +39,11 @@ fn main() {
         .version("0.1")
         .arg(
             Arg::with_name("dependency")
-                .short("d")
                 .multiple(true)
-                .takes_value(true),
+                .takes_value(true)
+                .required(true),
         )
-        .arg(Arg::with_name("python_args").multiple(true).last(true))
+        .arg(Arg::with_name("script").takes_value(true).required(true))
         .get_matches();
     let dependencies: Vec<&str> = matches.values_of("dependency").unwrap().collect();
     let hash_value = dependencies.join("\0");
@@ -75,7 +75,7 @@ fn main() {
             .unwrap();
     }
     process::Command::new(format!("{}/bin/python", &ve_path))
-        .args(matches.values_of("python_args").unwrap())
+        .arg(matches.value_of("script").unwrap())
         .spawn()
         .unwrap()
         .wait()
