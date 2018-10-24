@@ -21,10 +21,10 @@ cp target/release/pyscript ~/.local/bin  # or somewhere on your $PATH
 
 ## Usage
 
-Write a Python script with a shebang line of `#!/usr/bin/env pyscript <dependencies>`, like this:
+Write a Python script with a shebang line of `#!/usr/bin/env pyscript <dependencies> --`, like this:
 
 ```python
-#!/usr/bin/env pyscript requests
+#!/usr/bin/env pyscript requests --
 
 import requests
 
