@@ -63,7 +63,7 @@ fn main() {
     );
     if !dir_exists(&ve_path).unwrap() {
         fs::create_dir_all(&ve_path).unwrap();
-        process::Command::new("python")
+        process::Command::new("python3")
             .arg("-m")
             .arg("venv")
             .arg(&ve_path)

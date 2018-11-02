@@ -10,7 +10,7 @@ pyscript lets you write a single-file script that depends on external libraries,
 
 ## Installation
 
-You'll need Rust installed to compile pyscript. You'll also need the `python` binary to point to a Python 3 installation.
+You'll need Rust installed to compile pyscript. You'll also need a Python 3 installation installed and accessible as the `python3` binary on your search path.
 
 ```
 git clone https://github.com/adambrenecki/pyscript.git
@@ -35,7 +35,7 @@ Then, `chmod +x` that script, and run it.
 
 ## FAQs
 
-- **Which Python interpreter/version will my script run under?** Whichever one the `python` command invokes. If this ever changes, you'll get whichever one the `python` command invoked the first time pyscript saw the particular combination of dependencies you're using (i.e. at the time it created the virtualenv). Future versions of pyscript will be a bit smarter about this, and may even let you specify the version of Python to use.
+- **Which Python interpreter/version will my script run under?** Whichever one the `python3` command invokes. If this ever changes, you'll get whichever one the `python3` command invoked the first time pyscript saw the particular combination of dependencies you're using (i.e. at the time it created the virtualenv). Future versions of pyscript will be a bit smarter about this, and may even let you specify the version of Python to use.
 - **Which versions of my dependencies will I get?** The latest version as of the first time pyscript saw the particular combination of dependencies you're using (i.e. at the time it created the virtualenv). If you need a specific version, you can specify a version number in your shebang (e.g. `requests>=2` or `requests==2.19.1`, or any other format Pip accepts). Future versions of pyscript will be a bit smarter about this, by upgrading things periodically.
 - **How do I wrap my dependency list around multiple lines?** Don't. When you get to the point where you need to, write a setup.py file, or use flit or poetry, because you now have a proper project rather than a short, simple script.
 - **Why did pyscript reinstall all of my dependencies, even though I only changed one?** pyscript works out which virtualenv to use by hashing the list of dependencies. When that list changes, you get a whole new virtualenv. Fortunately, because Pip prefers wheels and keeps local caches of things it installs, this is usually pretty fast unless you're depending on a large C dependency that doesn't have a wheel for your platform.
