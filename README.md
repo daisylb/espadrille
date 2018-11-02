@@ -1,6 +1,6 @@
 # pyscript
 
-Write short, simple scripts using the power of the entire Python ecosystem.
+Write short, simple scripts using the power of the entire Python ecosystem. Currently supports macOS.
 
 Shell scripts are a pain to write, unless you've spent years mastering their arcane syntax and the myriad workarounds for the shell's everything-is-a-string philosophy. Writing a Python script and chucking it in your `$PATH` seems like a much more appealing option, but sometimes you want more than just Python's standard library. Installing the libraries you want in your global Python seems icky, but doing it properly and creating a virtualenv and packaging metadata files doesn't seem worth the effort.
 
@@ -43,3 +43,4 @@ Then, `chmod +x` that script, and run it.
 - **Wait, this is a Python tool, why is it written in Rust?** Because pyscript uses virtualenvs, if pyscript itself was written in Python, you'd have to wait for the Python interpreter to start up twice. In reality, this probably isn't a huge deal in most cases, so this leads us to the real reason: it seemed like a fun idea.
 - **How good would it be if pyscript just figured out which packages to install from `import` statements?** Heaps good. Unfortunately, in Python, the name of the _distribution_ (the thing you install from the PyPI through Pip) doesn't have to match the name of the _package_ (the thing that you import). This means that two different distributions on PyPI could expose the same package, whether by accident or malice. Since pyscript's whole job is essentially "download code from the Internet and run it", it's important to make sure you're getting the code you expect.
 - **Isn't downloading code from the Internet and running it super insecure?** If you were going to download each individual package from PyPI and manually audits its contents before installing it, then pyscript isn't for you. But let's face it, you weren't going to do that. You were going to just blindly `pip install` it anyway, which is exactly what pyscript does. That said, there are certainly things that pyscript could do to keep you safe, and future versions might do some of them.
+- **Why doesn't this work on Linux?** On Linux, shebangs can only have one argument, and the shebang for a pyscript script is usually going to be `/usr/bin/env pyscript foo bar --`, which means `env` is going to try to find a binary whose filename is `pyscript foo bar --`. Future versions of pyscript will read dependencies from a different part of the file, to prevent this.
