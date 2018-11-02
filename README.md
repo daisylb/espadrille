@@ -10,7 +10,7 @@ pyscript lets you write a single-file script that depends on external libraries,
 
 ## Installation
 
-You'll need Rust installed to compile pyscript.
+You'll need Rust installed to compile pyscript. You'll also need the `python` binary to point to a Python 3 installation.
 
 ```
 git clone https://github.com/adambrenecki/pyscript.git

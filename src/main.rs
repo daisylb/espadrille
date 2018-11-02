@@ -65,7 +65,7 @@ fn main() {
         fs::create_dir_all(&ve_path).unwrap();
         process::Command::new("python")
             .arg("-m")
-            .arg("virtualenv")
+            .arg("venv")
             .arg(&ve_path)
             .spawn()
             .unwrap()
