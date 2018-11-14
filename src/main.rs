@@ -31,7 +31,7 @@ fn main() {
         python_version: env::PythonVersion::Any,
         package_specs: dependencies,
     };
-    let ve_path = env::get_venv(spec);
+    let ve_path = env::get_venv(spec).unwrap();
     process::Command::new(ve_path.join("bin").join("python").as_os_str())
         .args(matches.values_of("python_args").unwrap())
         .spawn()

@@ -43,7 +43,7 @@ fn dir_exists(path: &Path) -> io::Result<bool> {
     }
 }
 
-pub fn get_venv(spec: EnvironmentSpec) -> PathBuf {
+pub fn get_venv(spec: EnvironmentSpec) -> io::Result<PathBuf> {
     // Calculate the hash of the spec
     let hash_value = spec.package_specs.join("\0");
     let mut hasher = Sha3::sha3_256();
@@ -54,24 +54,20 @@ pub fn get_venv(spec: EnvironmentSpec) -> PathBuf {
     let ve_path: PathBuf = dirs::cache_dir().unwrap().join(PYSCRIPT_SUBPATH).join(hash);
 
     // Create the venv if it doesn't exist
-    if !dir_exists(&ve_path).unwrap() {
-        fs::create_dir_all(&ve_path).unwrap();
+    if !dir_exists(&ve_path)? {
+        fs::create_dir_all(&ve_path)?;
         process::Command::new("python3")
             .arg("-m")
             .arg("venv")
             .arg(ve_path.as_os_str())
-            .spawn()
-            .unwrap()
-            .wait()
-            .unwrap();
+            .spawn()?
+            .wait()?;
         process::Command::new(ve_path.join("bin").join("pip").as_os_str())
             .arg("install")
             .args(spec.package_specs)
-            .spawn()
-            .unwrap()
-            .wait()
-            .unwrap();
+            .spawn()?
+            .wait()?;
     }
 
-    ve_path
+    Ok(ve_path)
 }
