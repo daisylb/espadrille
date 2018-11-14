@@ -6,37 +6,8 @@ extern crate clap;
 extern crate crypto;
 extern crate dirs;
 use clap::{App, Arg};
-use crypto::digest::Digest;
-use crypto::sha3::Sha3;
-use std::fs;
-use std::io;
-use std::path::{Path, PathBuf};
 use std::process;
-
-fn dir_exists(path: &Path) -> io::Result<bool> {
-    match fs::metadata(path) {
-        Err(e) => {
-            if e.kind() == io::ErrorKind::NotFound {
-                Ok(false)
-            } else {
-                Err(e)
-            }
-        }
-        Ok(metadata) => {
-            if metadata.is_dir() {
-                Ok(true)
-            } else {
-                Err(io::Error::new(
-                    io::ErrorKind::AlreadyExists,
-                    format!(
-                        "{} exists and is not a directory",
-                        path.to_str().unwrap_or("<unprintable path>")
-                    ),
-                ))
-            }
-        }
-    }
-}
+mod env;
 
 fn main() {
     let matches = App::new("pyscript")
@@ -55,34 +26,12 @@ fn main() {
         )
         .get_matches();
     let dependencies: Vec<&str> = matches.values_of("dependency").unwrap().collect();
-    let hash_value = dependencies.join("\0");
-    let mut hasher = Sha3::sha3_256();
-    hasher.input_str(&hash_value);
-    let hash = hasher.result_str();
 
-    let ve_path: PathBuf = dirs::cache_dir()
-        .unwrap()
-        .join("pyscript")
-        .join("envs")
-        .join(hash);
-    if !dir_exists(&ve_path).unwrap() {
-        fs::create_dir_all(&ve_path).unwrap();
-        process::Command::new("python3")
-            .arg("-m")
-            .arg("venv")
-            .arg(ve_path.as_os_str())
-            .spawn()
-            .unwrap()
-            .wait()
-            .unwrap();
-        process::Command::new(ve_path.join("bin").join("pip").as_os_str())
-            .arg("install")
-            .args(dependencies)
-            .spawn()
-            .unwrap()
-            .wait()
-            .unwrap();
-    }
+    let spec = env::EnvironmentSpec {
+        python_version: env::PythonVersion::Any,
+        package_specs: dependencies,
+    };
+    let ve_path = env::get_venv(spec);
     process::Command::new(ve_path.join("bin").join("python").as_os_str())
         .args(matches.values_of("python_args").unwrap())
         .spawn()
