@@ -62,7 +62,9 @@ pub fn get_venv(spec: EnvironmentSpec) -> io::Result<PathBuf> {
             .arg(ve_path.as_os_str())
             .spawn()?
             .wait()?;
-        process::Command::new(ve_path.join("bin").join("pip").as_os_str())
+        process::Command::new(ve_path.join("bin").join("python").as_os_str())
+            .arg("-m")
+            .arg("pip")
             .arg("install")
             .args(spec.package_specs)
             .spawn()?
