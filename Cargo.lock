@@ -110,6 +110,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "espadrille"
+version = "0.1.0"
+dependencies = [
+ "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "dirs 1.0.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "failure"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -164,15 +173,6 @@ version = "0.4.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "unicode-xid 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "pyscript"
-version = "0.1.0"
-dependencies = [
- "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "dirs 1.0.4 (registry+https://github.com/rust-lang/crates.io-index)",
- "rust-crypto 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

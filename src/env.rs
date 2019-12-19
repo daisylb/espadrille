@@ -16,7 +16,7 @@ pub struct EnvironmentSpec<'a> {
     pub package_specs: Vec<&'a str>,
 }
 
-const PYSCRIPT_SUBPATH: &str = "pyscript/envs";
+const PYSCRIPT_SUBPATH: &str = "espadrille/envs";
 
 fn dir_exists(path: &Path) -> io::Result<bool> {
     match fs::metadata(path) {

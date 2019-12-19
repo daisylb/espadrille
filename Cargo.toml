@@ -1,7 +1,10 @@
 [package]
-name = "pyscript"
+name = "espadrille"
+description = "Write short, simple scripts using the power of the entire Python ecosystem."
 version = "0.1.0"
-authors = ["Adam Brenecki"]
+authors = ["Leigh Brenecki <leigh@brenecki.id.au>"]
+license = "MPL-2.0"
+repository = "https://github.com/excitedleigh/espadrille"
 
 [dependencies]
 clap = "*"

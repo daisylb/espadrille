@@ -10,7 +10,7 @@ use std::process;
 mod env;
 
 fn main() {
-    let matches = App::new("pyscript")
+    let matches = App::new("espadrille")
         .version("0.1")
         .arg(
             Arg::with_name("dependency")
