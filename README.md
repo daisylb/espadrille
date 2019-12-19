@@ -12,14 +12,19 @@ Espadrille is named after a type of shoe, which is also [an unconventional packa
 
 ## Installation
 
-You'll need Rust installed to compile Espadrille. You'll also need a Python 3 installation installed and accessible as the `python3` binary on your search path.
+To install a pre-built binary (currently macOS Mojave only):
 
 ```
-git clone https://github.com/adambrenecki/espadrille.git
-cd espadrille
-cargo build --release
-cp target/release/espadrille ~/.local/bin  # or somewhere on your $PATH
+pip install espadrille
 ```
+
+To install from source, assuming you have a Rust toolchain installed:
+
+```
+cargo install espadrille
+```
+
+In the future, pip will be able to install binaries for more platforms, and possibly build from source as well.
 
 ## Usage
 
