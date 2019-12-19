@@ -7,6 +7,6 @@ license = "MPL-2.0"
 repository = "https://github.com/excitedleigh/espadrille"
 
 [dependencies]
-clap = "*"
-rust-crypto = "*"
+clap = "2.33.0"
+rust-crypto = "0.2.36"
 dirs = "1.0.4"
