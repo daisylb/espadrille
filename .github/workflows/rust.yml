@@ -16,7 +16,8 @@ jobs:
     - name: Build
       uses: actions-rs/cargo@v1
       with:
-        command: build --release --verbose
+        command: build
+        args: --release --verbose
     - name: Upload binary
       uses: actions/upload-artifact@v1
       with:
