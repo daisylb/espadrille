@@ -9,12 +9,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        default: true
     - name: Build
-      run: cargo build --release --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      uses: actions-rs/cargo@v1
+      with:
+        command: build --release --verbose
     - name: Upload binary
       uses: actions/upload-artifact@v1
       with:
-        name: Espadrille
+        name: espadrille
         path: target/release/espadrille
