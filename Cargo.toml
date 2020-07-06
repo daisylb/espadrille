@@ -9,4 +9,4 @@ repository = "https://github.com/excitedleigh/espadrille"
 [dependencies]
 clap = "2.33.1"
 rust-crypto = "0.2.36"
-dirs = "3.0.0"
+dirs = "3.0.1"
